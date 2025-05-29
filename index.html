@@ -361,8 +361,7 @@
                 loadingElement.style.display = 'block';
                 videoCard.style.display = 'none';
                 
-                // 添加随机参数避免缓存
-                const apiUrl = 'https://api.yzlrank.top/v1/video/random?limit=1&_=' + Date.now();
+                const apiUrl = 'https://api.yzlrank.top/v1/video/random?limit=1';
                 
                 const response = await fetch(apiUrl);
                 if (!response.ok) {
