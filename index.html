@@ -314,7 +314,7 @@
                     </div>
                 </div>
                 
-                <div class="description" id="desc"></div>
+                <!-- <div class="description" id="desc"></div> -->
                 
                 <div class="btn-group">
                     <button class="btn watch-btn" id="watchBtn">
@@ -339,7 +339,7 @@
         const coverElement = document.getElementById('cover');
         const titleElement = document.getElementById('title');
         const authorElement = document.getElementById('author');
-        const descElement = document.getElementById('desc');
+        // const descElement = document.getElementById('desc');
         const viewElement = document.getElementById('view');
         const likeElement = document.getElementById('like');
         const replyElement = document.getElementById('reply');
@@ -398,7 +398,7 @@
             coverElement.src = video.pic;
             titleElement.textContent = video.title;
             authorElement.textContent = video.author;
-            descElement.textContent = video.desc || '这个视频暂时没有描述信息';
+            // descElement.textContent = video.desc || '这个视频暂时没有描述信息';
             
             // 设置统计数据
             viewElement.textContent = formatNumber(video.view) + '次播放';
