@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>绫曲妙妙屋</title>
     <style>
@@ -190,6 +191,7 @@
             font-size: 15px;
             line-height: 1.6;
             color: #555;
+            white-space: pre-line;
         }
         
         .btn-group {
@@ -228,6 +230,7 @@
         .refresh-btn {
             background: #f0f2f5;
             color: #666;
+            justify-content: center;
         }
         
         .refresh-btn:hover {
@@ -241,7 +244,10 @@
             color: #666;
             font-size: 14px;
             border-top: 1px solid #eee;
-            margin-top: 20px;
+        }
+
+        a {
+            color: inherit; 
         }
         
         @media (max-width: 600px) {
@@ -285,8 +291,8 @@
         <div class="content">
             <div class="loading-container" id="loading">
                 <div class="loading-spinner"></div>
-                <p class="loading-text">首次加载时间较长，请耐心等待...</p>
-                <div class="source">关注乐正绫喵，关注乐正绫谢谢喵~~~</div>
+                <p class="loading-text">首次加载时间可能较长，请耐心等待...</p>
+                <div class="source">关注<a href="https://space.bilibili.com/406948651" target="_blank">乐正绫</a>喵，关注<a href="https://space.bilibili.com/406948651" target="_blank">乐正绫</a>谢谢喵~~~</div>
             </div>
             
             <div class="video-card" id="videoCard">
@@ -313,7 +319,7 @@
                     </div>
                 </div>
                 
-                <div class="description" id="desc"></div>
+                <!-- <div class="description" id="desc"></div> -->
                 
                 <div class="btn-group">
                     <button class="btn watch-btn" id="watchBtn">
@@ -327,7 +333,7 @@
         </div>
         
         <footer>
-            <p>乐正绫原创曲推荐 | 数据库来源：济星洲</p>
+            <p>乐正绫原创曲推荐 | 数据来源：<a href="https://space.bilibili.com/96953601" target="_blank">济星洲</a> | 数据非实时更新</p>
         </footer>
     </div>
 
@@ -338,7 +344,7 @@
         const coverElement = document.getElementById('cover');
         const titleElement = document.getElementById('title');
         const authorElement = document.getElementById('author');
-        const descElement = document.getElementById('desc');
+        // const descElement = document.getElementById('desc');
         const viewElement = document.getElementById('view');
         const likeElement = document.getElementById('like');
         const replyElement = document.getElementById('reply');
@@ -360,8 +366,7 @@
                 loadingElement.style.display = 'block';
                 videoCard.style.display = 'none';
                 
-                // 添加随机参数避免缓存
-                const apiUrl = 'https://api.yzlrank.top/v1/video/random?limit=1&_=' + Date.now();
+                const apiUrl = 'https://api.yzlrank.top/v1/video/random?limit=1';
                 
                 const response = await fetch(apiUrl);
                 if (!response.ok) {
@@ -383,8 +388,7 @@
                         <i class="fas fa-exclamation-circle" style="font-size: 48px;"></i>
                         <p style="margin-top: 15px; font-size: 18px;">加载失败，请稍后重试</p>
                     </div>
-                    <div class="source">数据库来源：济星洲</div>
-                    <button class="btn refresh-btn" onclick="fetchRandomVideo()" style="margin-top: 20px;">
+                    <button class="btn refresh-btn" onclick="fetchRandomVideo()" style="margin: auto;">
                         <i class="fas fa-sync-alt"></i> 重新加载
                     </button>
                 `;
@@ -397,7 +401,7 @@
             coverElement.src = video.pic;
             titleElement.textContent = video.title;
             authorElement.textContent = video.author;
-            descElement.textContent = video.desc || '这个视频暂时没有描述信息';
+            // descElement.textContent = video.desc || '这个视频暂时没有描述信息';
             
             // 设置统计数据
             viewElement.textContent = formatNumber(video.view) + '次播放';
