@@ -177,6 +177,13 @@
             font-size: 14px;
             color: #666;
         }
+
+        .pubdate {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
         
         .stat-item i {
             color: #fb7299;
@@ -299,7 +306,14 @@
                 <img class="cover" id="cover" src="" alt="视频封面">
                 <h2 class="video-title" id="title"></h2>
                 <div class="author" id="author"></div>
-                
+
+                <div class="pubdate">
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span id="pubdate"></span>
+                    </div>
+                </div>
+                    
                 <div class="stats">
                     <div class="stat-item">
                         <i class="fas fa-play-circle"></i>
@@ -318,6 +332,8 @@
                         <span id="favorite"></span>
                     </div>
                 </div>
+
+                
                 
                 <!-- <div class="description" id="desc"></div> -->
                 
@@ -344,6 +360,7 @@
         const coverElement = document.getElementById('cover');
         const titleElement = document.getElementById('title');
         const authorElement = document.getElementById('author');
+        const pubdateElement = document.getElementById('pubdate');
         // const descElement = document.getElementById('desc');
         const viewElement = document.getElementById('view');
         const likeElement = document.getElementById('like');
@@ -358,6 +375,11 @@
                 return (num / 10000).toFixed(1) + '万';
             }
             return num;
+        }
+
+        // 格式化发布日期
+        function formatPubdate(date) {
+            return date.replace('T', ' ');
         }
         
         // 获取随机视频数据
@@ -401,6 +423,7 @@
             coverElement.src = video.pic;
             titleElement.textContent = video.title;
             authorElement.textContent = video.author;
+            pubdateElement.textContent = formatPubdate(video.pubdate);
             // descElement.textContent = video.desc || '这个视频暂时没有描述信息';
             
             // 设置统计数据
