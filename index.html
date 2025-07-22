@@ -1,411 +1,433 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="referrer" content="no-referrer" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>绫曲妙妙屋</title>
+    <script
+      charset="UTF-8"
+      id="LA_COLLECT"
+      src="//sdk.51.la/js-sdk-pro.min.js"
+    ></script>
+    <script>
+      LA.init({
+        id: "3Mrl6aazAcF5vSND",
+        ck: "3Mrl6aazAcF5vSND",
+        autoTrack: true,
+      });
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        color: #333;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 800px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      header {
+        background: linear-gradient(90deg, #fb7299, #ff5777);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .logo i {
+        font-size: 32px;
+      }
+
+      h1 {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+      }
+
+      .subtitle {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-top: 5px;
+      }
+
+      .content {
+        padding: 30px;
+      }
+
+      .loading-container {
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .loading-text {
+        font-size: 16px;
+        color: #fb7299;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(251, 114, 153, 0.2);
+        border-top: 5px solid #fb7299;
+        border-radius: 50%;
+        margin: 0 auto 30px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        
-        body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #333;
+        100% {
+          transform: rotate(360deg);
         }
-        
+      }
+
+      .source {
+        font-size: 12px;
+        color: #666;
+        margin-top: 20px;
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .video-card {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.6s forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .cover {
+        width: 100%;
+        border-radius: 10px;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .cover:hover {
+        transform: scale(1.02);
+      }
+
+      .video-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        line-height: 1.4;
+        color: #222;
+      }
+
+      .author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: #666;
+      }
+
+      .author-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .pubdate {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .stat-item i {
+        color: #fb7299;
+        font-size: 16px;
+      }
+
+      .description {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #555;
+        white-space: pre-line;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        flex: 1;
+        min-width: 200px;
+        padding: 14px 20px;
+        border-radius: 8px;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .watch-btn {
+        background: linear-gradient(90deg, #00a1d6, #0092cc);
+        color: white;
+      }
+
+      .watch-btn:hover {
+        background: linear-gradient(90deg, #0092cc, #0082c2);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 161, 214, 0.3);
+      }
+
+      .refresh-btn {
+        background: #f0f2f5;
+        color: #666;
+        justify-content: center;
+      }
+
+      .refresh-btn:hover {
+        background: #e5e7eb;
+        transform: translateY(-3px);
+      }
+
+      footer {
+        text-align: center;
+        padding: 12px;
+        color: #666;
+        font-size: 14px;
+        border-top: 1px solid #eee;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      @media (max-width: 600px) {
         .container {
-            width: 100%;
-            max-width: 800px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: all 0.3s ease;
+          border-radius: 10px;
         }
-        
+
         header {
-            background: linear-gradient(90deg, #fb7299, #ff5777);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative;
+          padding: 15px;
         }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .logo i {
-            font-size: 32px;
-        }
-        
+
         h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
+          font-size: 22px;
         }
-        
-        .subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-top: 5px;
-        }
-        
+
         .content {
-            padding: 30px;
+          padding: 20px;
         }
-        
-        .loading-container {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        
-        .loading-text {
-            font-size: 16px;
-            color: #fb7299;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(251, 114, 153, 0.2);
-            border-top: 5px solid #fb7299;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .source {
-            font-size: 12px;
-            color: #666;
-            margin-top: 20px;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .video-card {
-            display: none;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s forwards;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .cover {
-            width: 100%;
-            border-radius: 10px;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-        
-        .cover:hover {
-            transform: scale(1.02);
-        }
-        
+
         .video-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.4;
-            color: #222;
-        }
-        
-        .author {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            font-size: 16px;
-            color: #666;
-        }
-        
-        .author::before {
-            content: "UP";
-            background: #fb7299;
-            color: white;
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-        
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-            color: #666;
+          font-size: 19px;
         }
 
-        .pubdate {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .stat-item i {
-            color: #fb7299;
-            font-size: 16px;
-        }
-        
-        .description {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 15px;
-            line-height: 1.6;
-            color: #555;
-            white-space: pre-line;
-        }
-        
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
         .btn {
-            flex: 1;
-            min-width: 200px;
-            padding: 14px 20px;
-            border-radius: 8px;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
+          min-width: 100%;
         }
-        
-        .watch-btn {
-            background: linear-gradient(90deg, #00a1d6, #0092cc);
-            color: white;
-        }
-        
-        .watch-btn:hover {
-            background: linear-gradient(90deg, #0092cc, #0082c2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 161, 214, 0.3);
-        }
-        
-        .refresh-btn {
-            background: #f0f2f5;
-            color: #666;
-            justify-content: center;
-        }
-        
-        .refresh-btn:hover {
-            background: #e5e7eb;
-            transform: translateY(-3px);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 14px;
-            border-top: 1px solid #eee;
-        }
-
-        a {
-            color: inherit; 
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 10px;
-            }
-            
-            header {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 22px;
-            }
-            
-            .content {
-                padding: 20px;
-            }
-            
-            .video-title {
-                font-size: 19px;
-            }
-            
-            .btn {
-                min-width: 100%;
-            }
-        }
+      }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fab fa-bilibili"></i>
-                <h1>绫曲妙妙屋</h1>
-            </div>
-            <p class="subtitle">乐正司百曲，绫动万年红</p>
-        </header>
-        
-        <div class="content">
-            <div class="loading-container" id="loading">
-                <div class="loading-spinner"></div>
-                <p class="loading-text">首次加载时间可能较长，请耐心等待...</p>
-                <div class="source">关注乐正绫喵，关注乐正绫谢谢喵~~~</div>
-            </div>
-            
-            <div class="video-card" id="videoCard">
-                <img class="cover" id="cover" src="" alt="视频封面">
-                <h2 class="video-title" id="title"></h2>
-                <div class="author" id="author"></div>
-
-                <div class="pubdate">
-                    <div class="stat-item">
-                        <i class="fas fa-clock"></i>
-                        <span id="pubdate"></span>
-                    </div>
-                </div>
-                    
-                <div class="stats">
-                    <div class="stat-item">
-                        <i class="fas fa-play-circle"></i>
-                        <span id="view"></span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-thumbs-up"></i>
-                        <span id="like"></span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-comment"></i>
-                        <span id="reply"></span>
-                    </div>
-                    <div class="stat-item">
-                        <i class="fas fa-star"></i>
-                        <span id="favorite"></span>
-                    </div>
-                </div>
-
-                
-                
-                <!-- <div class="description" id="desc"></div> -->
-                
-                <div class="btn-group">
-                    <button class="btn watch-btn" id="watchBtn">
-                        <i class="fas fa-play"></i> 观看视频
-                    </button>
-                    <button class="btn refresh-btn" id="refreshBtn">
-                        <i class="fas fa-sync-alt"></i> 换一个视频
-                    </button>
-                </div>
-            </div>
+      <header>
+        <div class="logo">
+          <i class="fab fa-bilibili"></i>
+          <h1>绫曲妙妙屋</h1>
         </div>
-        
-        <footer>
-            <p style="font-size: small;"><a href="https://space.bilibili.com/406948651" target="_blank">乐正绫</a>原创曲推荐 | 数据来源：<a href="https://space.bilibili.com/96953601" target="_blank">济星洲</a> | 数据非实时更新</p>
-        </footer>
+        <p class="subtitle">乐正司百曲，绫动万年红</p>
+      </header>
+
+      <div class="content">
+        <div class="loading-container" id="loading">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">加载时间可能较长，请耐心等待...</p>
+          <div class="source">关注乐正绫喵，关注乐正绫谢谢喵~~~</div>
+        </div>
+
+        <div class="video-card" id="videoCard">
+          <img class="cover" id="cover" src="" alt="视频封面" />
+          <h2 class="video-title" id="title"></h2>
+          <div class="author" id="author"></div>
+
+          <div class="pubdate">
+            <div class="stat-item">
+              <i class="fas fa-clock"></i>
+              <span id="pubdate"></span>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat-item">
+              <i class="fas fa-play-circle"></i>
+              <span id="view"></span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-thumbs-up"></i>
+              <span id="like"></span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-comment"></i>
+              <span id="reply"></span>
+            </div>
+            <div class="stat-item">
+              <i class="fas fa-star"></i>
+              <span id="favorite"></span>
+            </div>
+          </div>
+
+          <!-- <div class="description" id="desc"></div> -->
+
+          <div class="btn-group">
+            <button class="btn watch-btn" id="watchBtn">
+              <i class="fas fa-play"></i> 观看视频
+            </button>
+            <button class="btn refresh-btn" id="refreshBtn">
+              <i class="fas fa-sync-alt"></i> 换一个视频
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p style="font-size: smaller">
+          <a href="https://space.bilibili.com/406948651" target="_blank"
+            >乐正绫</a
+          >原创曲推荐 | 数据来源：<a
+            href="https://space.bilibili.com/96953601"
+            target="_blank"
+            >济星洲</a>
+          | 数据非实时更新
+        </p>
+      </footer>
     </div>
 
     <script>
-        // 获取DOM元素
-        const loadingElement = document.getElementById('loading');
-        const videoCard = document.getElementById('videoCard');
-        const coverElement = document.getElementById('cover');
-        const titleElement = document.getElementById('title');
-        const authorElement = document.getElementById('author');
-        const pubdateElement = document.getElementById('pubdate');
-        // const descElement = document.getElementById('desc');
-        const viewElement = document.getElementById('view');
-        const likeElement = document.getElementById('like');
-        const replyElement = document.getElementById('reply');
-        const favoriteElement = document.getElementById('favorite');
-        const watchBtn = document.getElementById('watchBtn');
-        const refreshBtn = document.getElementById('refreshBtn');
-        
-        // 格式化数字
-        function formatNumber(num) {
-            if (num >= 10000) {
-                return (num / 10000).toFixed(1) + '万';
-            }
-            return num;
-        }
+      // 获取DOM元素
+      const loadingElement = document.getElementById("loading");
+      const videoCard = document.getElementById("videoCard");
+      const coverElement = document.getElementById("cover");
+      const titleElement = document.getElementById("title");
+      const authorElement = document.getElementById("author");
+      const pubdateElement = document.getElementById("pubdate");
+      // const descElement = document.getElementById('desc');
+      const viewElement = document.getElementById("view");
+      const likeElement = document.getElementById("like");
+      const replyElement = document.getElementById("reply");
+      const favoriteElement = document.getElementById("favorite");
+      const watchBtn = document.getElementById("watchBtn");
+      const refreshBtn = document.getElementById("refreshBtn");
 
-        // 格式化发布日期
-        function formatPubdate(date) {
-            return date.replace('T', ' ');
+      // 格式化数字
+      function formatNumber(num) {
+        if (num >= 10000) {
+          return (num / 10000).toFixed(1) + "万";
         }
-        
-        // 获取随机视频数据
-        async function fetchRandomVideo() {
-            try {
-                loadingElement.style.display = 'block';
-                videoCard.style.display = 'none';
-                
-                const apiUrl = 'https://api.yzlrank.top/v1/video/random?size=1';
-                
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error('网络响应不正常');
-                }
-                
-                const data = await response.json();
-                if (data.list && data.list.length > 0) {
-                    const video = data.list[0];
-                    renderVideo(video);
-                } else {
-                    throw new Error('未获取到视频数据');
-                }
-            } catch (error) {
-                console.error('获取视频数据失败:', error);
-                // 显示错误信息（在实际应用中可替换为更友好的错误提示）
-                loadingElement.innerHTML = `
+        return num;
+      }
+
+      // 格式化发布日期
+      function formatPubdate(date) {
+        return date.replace("T", " ");
+      }
+
+      // 获取随机视频数据
+      async function fetchRandomVideo() {
+        try {
+          loadingElement.style.display = "block";
+          videoCard.style.display = "none";
+
+          const apiUrl = "https://api.yzlrank.top/v1/video/random?size=1";
+
+          const response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error("网络响应不正常");
+          }
+
+          const data = await response.json();
+          if (data.list && data.list.length > 0) {
+            const video = data.list[0];
+            renderVideo(video);
+          } else {
+            throw new Error("未获取到视频数据");
+          }
+        } catch (error) {
+          console.error("获取视频数据失败:", error);
+          // 显示错误信息
+          loadingElement.innerHTML = `
                     <div style="color: #ff4d4f; margin-bottom: 20px;">
                         <i class="fas fa-exclamation-circle" style="font-size: 48px;"></i>
                         <p style="margin-top: 15px; font-size: 18px;">加载失败，请稍后重试</p>
@@ -414,41 +436,41 @@
                         <i class="fas fa-sync-alt"></i> 重新加载
                     </button>
                 `;
-            }
         }
-        
-        // 渲染视频信息
-        function renderVideo(video) {
-            // 设置视频信息
-            coverElement.src = video.pic;
-            titleElement.textContent = video.title;
-            authorElement.textContent = video.author;
-            pubdateElement.textContent = formatPubdate(video.pubdate);
-            // descElement.textContent = video.desc || '这个视频暂时没有描述信息';
-            
-            // 设置统计数据
-            viewElement.textContent = formatNumber(video.view) + '次播放';
-            likeElement.textContent = formatNumber(video.like);
-            replyElement.textContent = formatNumber(video.reply);
-            favoriteElement.textContent = formatNumber(video.favorite);
-            
-            // 设置跳转链接
-            watchBtn.onclick = function() {
-                window.open(`https://www.bilibili.com/video/${video.bvid}`, '_blank');
-            };
-            
-            // 隐藏加载动画，显示视频卡片
-            setTimeout(() => {
-                loadingElement.style.display = 'none';
-                videoCard.style.display = 'block';
-            }, 500);
-        }
-        
-        // 页面加载时获取随机视频
-        document.addEventListener('DOMContentLoaded', fetchRandomVideo);
-        
-        // 刷新按钮事件
-        refreshBtn.addEventListener('click', fetchRandomVideo);
+      }
+
+      // 渲染视频信息
+      function renderVideo(video) {
+        // 设置视频信息
+        coverElement.src = video.pic;
+        titleElement.textContent = video.title;
+        authorElement.innerHTML = `<img class="author-avatar" src="${video.face}" alt="UP主头像">${video.author}`;
+        pubdateElement.textContent = formatPubdate(video.pubdate);
+        // descElement.textContent = video.desc || '这个视频暂时没有描述信息';
+
+        // 设置统计数据
+        viewElement.textContent = formatNumber(video.view) + "次播放";
+        likeElement.textContent = formatNumber(video.like);
+        replyElement.textContent = formatNumber(video.reply);
+        favoriteElement.textContent = formatNumber(video.favorite);
+
+        // 设置跳转链接
+        watchBtn.onclick = function () {
+          window.open(`https://www.bilibili.com/video/${video.bvid}`, "_blank");
+        };
+
+        // 隐藏加载动画，显示视频卡片
+        setTimeout(() => {
+          loadingElement.style.display = "none";
+          videoCard.style.display = "block";
+        }, 500);
+      }
+
+      // 页面加载时获取随机视频
+      document.addEventListener("DOMContentLoaded", fetchRandomVideo);
+
+      // 刷新按钮事件
+      refreshBtn.addEventListener("click", fetchRandomVideo);
     </script>
-</body>
+  </body>
 </html>
