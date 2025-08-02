@@ -340,10 +340,10 @@
               <i class="fas fa-thumbs-up"></i>
               <span id="like"></span>
             </div>
-            <div class="stat-item">
+            <!-- <div class="stat-item">
               <i class="fas fa-comment"></i>
               <span id="reply"></span>
-            </div>
+            </div>  -->
             <div class="stat-item">
               <i class="fas fa-star"></i>
               <span id="favorite"></span>
@@ -367,11 +367,17 @@
         <p style="font-size: smaller">
           <a href="https://space.bilibili.com/406948651" target="_blank"
             >乐正绫</a
-          >原创曲推荐 | 数据来源：<a
+          >原创曲推荐
+          | 数据非实时更新
+        </p>
+        <p style="font-size: smaller">
+            策划：<a
+            href="https://space.bilibili.com/475385283"
+            target="_blank"
+            >Ricardo-Maple-L</a> | 数据来源：<a
             href="https://space.bilibili.com/96953601"
             target="_blank"
             >济星洲</a>
-          | 数据非实时更新
         </p>
       </footer>
     </div>
@@ -387,7 +393,7 @@
       // const descElement = document.getElementById('desc');
       const viewElement = document.getElementById("view");
       const likeElement = document.getElementById("like");
-      const replyElement = document.getElementById("reply");
+      // const replyElement = document.getElementById("reply");
       const favoriteElement = document.getElementById("favorite");
       const watchBtn = document.getElementById("watchBtn");
       const refreshBtn = document.getElementById("refreshBtn");
@@ -452,7 +458,7 @@
         // 设置统计数据
         viewElement.textContent = formatNumber(video.view) + "次播放";
         likeElement.textContent = formatNumber(video.like);
-        replyElement.textContent = formatNumber(video.reply);
+        // replyElement.textContent = formatNumber(video.reply);
         favoriteElement.textContent = formatNumber(video.favorite);
 
         // 设置跳转链接
